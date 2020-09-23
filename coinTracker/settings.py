@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cryptocoinTracker.apps.CryptocointrackerConfig',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -125,12 +126,13 @@ STATIC_URL = '/static/'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379',
+        'LOCATION': 'redis:127.0.0.1:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     },
 }
 
-CELERY_BROKER_URL = 'redis:' + '//localhost:6379/1'
-CELERY_RESULT_BACKEND = 'redis:' +'//localhost:6379/1'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ALWAYS_EAGER = False

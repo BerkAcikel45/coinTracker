@@ -5,7 +5,7 @@ Cryptocoin tracker with redis
 
 
 pip install requirements.txt
-********
+
 
 celery -A coinTracker worker -l info
 
